@@ -2,57 +2,76 @@ import {apiService} from "../index.mjs";
 
 /**
  * Create a bloom form component
- * @param {string} template - The ID of the template to clone
- * @param {Object} isLoggedIn - only logged in users see the bloom form
- * @returns {DocumentFragment} - The bloom form fragment
+ * @param {string} templateId - The ID of the <template> to clone
+ * @param {boolean} isLoggedIn - only logged in users see the bloom form
+ * @returns {DocumentFragment|null}
  */
-function createBloomForm(template, isLoggedIn) {
-  if (!isLoggedIn) return;
-  const bloomFormElement = document
-    .getElementById(template)
-    .content.cloneNode(true);
+function createBloomForm(templateId, isLoggedIn) {
+  if (!isLoggedIn) return null;
+  if (!templateId) throw new Error("Missing templateId");
 
-  return bloomFormElement;
+  const found = document.getElementById(templateId);
+  if (!found) throw new Error(`Template not found: #${templateId}`);
+  if (!(found instanceof HTMLTemplateElement)) {
+    throw new Error(`#${templateId} is not a <template> element`);
+  }
+
+  return found.content.cloneNode(true);
 }
 
 /**
  * Handle bloom form submission
- * @param {Event} event - The form submission event
+ * @param {SubmitEvent} event
  */
 async function handleBloomSubmit(event) {
   event.preventDefault();
+
   const form = event.target;
+  if (!(form instanceof HTMLFormElement)) return;
+
   const submitButton = form.querySelector("[data-submit]");
-  const originalText = submitButton.textContent;
   const textarea = form.querySelector("textarea");
+
+  if (!(submitButton instanceof HTMLButtonElement)) return;
+  if (!(textarea instanceof HTMLTextAreaElement)) return;
+
   const content = textarea.value.trim();
+  if (!content) return;
+
+  const originalText = content;
 
   try {
-    // Make form inert while we call the back end
     form.inert = true;
+    submitButton.disabled = true;
     submitButton.textContent = "Posting...";
+
     await apiService.postBloom(content);
+
     textarea.value = "";
-  } catch (error) {
-    throw error;
+    form.querySelector("[data-counter]").textContent = "0";
   } finally {
-    // Restore form
     submitButton.textContent = originalText;
+    submitButton.disabled = false;
     form.inert = false;
   }
 }
 
 /**
  * Handle textarea input for bloom form
- * @param {Event} event - The input event from textarea drives the character counter
+ * @param {InputEvent} event
  */
 function handleTyping(event) {
   const textarea = event.target;
-  const counter = textarea
-    .closest("[data-form]")
-    ?.querySelector("[data-counter]");
-  const maxLength = parseInt(textarea.getAttribute("maxlength"), 10);
-  counter.textContent = `${textarea.value.length} / ${maxLength}`;
+  if (!(textarea instanceof HTMLTextAreaElement)) return;
+
+  const formRoot = textarea.closest("[data-form]");
+  const counter = formRoot?.querySelector("[data-counter]");
+  if (!(counter instanceof HTMLElement)) return;
+
+  const maxAttr = textarea.getAttribute("maxlength");
+  const max_length = maxAttr ? Number.parseInt(maxAttr, 10) : null;
+
+  counter.textContent = max_length ? `${textarea.value.length} / ${max_length}` : `${textarea.value.length}`;
 }
 
 export {createBloomForm, handleBloomSubmit, handleTyping};
