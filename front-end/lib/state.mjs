@@ -1,6 +1,6 @@
 const STATE_STORAGE_KEY = "purpleForestState";
 
-// Try to get state out of cache
+// Attempt to restore state from localStorage cache
 const loadCachedState = () => {
   const cachedState = localStorage.getItem(STATE_STORAGE_KEY);
   if (cachedState) return JSON.parse(cachedState);
