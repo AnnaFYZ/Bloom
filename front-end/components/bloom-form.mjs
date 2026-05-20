@@ -1,11 +1,6 @@
 import {apiService} from "../index.mjs";
 
-/**
- * Create a bloom form component
- * @param {string} template - The ID of the template to clone
- * @param {Object} isLoggedIn - only logged in users see the bloom form
- * @returns {DocumentFragment} - The bloom form fragment
- */
+// Create a bloom form component - only rendered for logged-in users
 function createBloomForm(template, isLoggedIn) {
   if (!isLoggedIn) return;
   const bloomFormElement = document
