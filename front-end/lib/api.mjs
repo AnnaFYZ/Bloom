@@ -12,7 +12,7 @@ import {handleErrorDialog} from "../components/error.mjs";
 // 3. You can handle your errors
 // Don't touch any other part of the application with this file
 
-// Helper function for making API requests
+// Shared helper for all API requests
 async function _apiRequest(endpoint, options = {}) {
   const token = state.token;
   const baseUrl = "http://localhost:3000";
