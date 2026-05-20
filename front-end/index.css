@@ -12,7 +12,7 @@
   --shadow: var(--outline) 0px 0px 0px 1px, var(--outline) 0px 1px 0px 0px,
     var(--outline) 0px 0px 2.5px 0px, 0px 3.25px 6px var(--outline);
   --inset: inset 0px -3.25px 12px var(--outline);
-  --corner: 2.5px;
+  --corner: 4px;
   --pill: 9999px;
 }
 
