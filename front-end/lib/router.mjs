@@ -5,9 +5,7 @@ import {loginView} from "../views/login.mjs";
 import {homeView} from "../views/home.mjs";
 import {hashtagView} from "../views/hashtag.mjs";
 
-/**
- * Handle route changes based on the current URL
- */
+// Handle route changes based on the current URL
 function handleRouteChange() {
   // We're going to use hash for routing
   const hash = window.location.hash.substring(1) || "/";
