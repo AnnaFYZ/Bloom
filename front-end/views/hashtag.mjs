@@ -1,4 +1,4 @@
-import {renderOne, renderEach, destroy} from "../lib/render.mjs";
+import {destroy, renderEach, renderOne} from "../lib/render.mjs";
 import {
   state,
   apiService,
