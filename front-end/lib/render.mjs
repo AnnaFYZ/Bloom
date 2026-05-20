@@ -8,11 +8,8 @@ import {
   getHeadingContainer,
 } from "../index.mjs";
 
-/**
- * Render a component: pass to a creator function and then attach the result to the DOM
- * At this point the fragment becomes part of the DOM  - you can attach event listeners after this point in the flow
- * @param {Array} data - The data to pass to the creator function
- * @param {HTMLElement} container - The container to append the component to
+// Render a component: pass to a creator function and attach the result to the DOM.
+// The fragment joins the DOM here — event listeners can be attached after this point.
  * @param {string} template - The ID of the template to clone
  * @param {Function} creator - The function that creates the component
  */
