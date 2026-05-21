@@ -12,7 +12,7 @@ import {createLogout, handleLogout} from "../components/logout.mjs";
 import {createProfile, handleFollow} from "../components/profile.mjs";
 import {createBloom} from "../components/bloom.mjs";
 
-// Profile view - just this person's blooms and their profile
+// Profile view - displays a user's blooms and profile info
 function profileView(username) {
   destroy();
 

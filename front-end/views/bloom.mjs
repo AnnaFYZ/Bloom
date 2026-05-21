@@ -10,7 +10,7 @@ import {createBloom} from "../components/bloom.mjs";
 import {createLogin, handleLogin} from "../components/login.mjs";
 import {createLogout, handleLogout} from "../components/logout.mjs";
 
-// Bloom view - just a single bloom
+// Bloom view - renders a single bloom by ID
 function bloomView(bloomId) {
   destroy();
 
