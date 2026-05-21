@@ -17,7 +17,7 @@ import {
 } from "../components/bloom-form.mjs";
 import {createBloom} from "../components/bloom.mjs";
 
-// Home view - logged in or not
+// Home view - handles both logged-in and logged-out states
 function homeView() {
   destroy();
 
