@@ -1,4 +1,4 @@
-# Module-Legacy-Code
+## Module-Legacy-Code
 
 This repository hosts an existing codebase for you to work with.
 

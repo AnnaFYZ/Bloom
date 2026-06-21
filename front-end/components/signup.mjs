@@ -1,11 +1,7 @@
 import {apiService} from "../index.mjs";
 import {navigateTo} from "../lib/router.mjs";
 
-/**
- * Create a signup component
- * @param {string} template - The ID of the template to clone
- * @returns {DocumentFragment} - The signup fragment
- */
+// Create a signup component from the given template ID
 function createSignup(template) {
   const signupElement = document
     .getElementById(template)

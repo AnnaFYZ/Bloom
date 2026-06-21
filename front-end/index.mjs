@@ -3,7 +3,7 @@ import {handleRouteChange} from "./lib/router.mjs";
 import {apiService} from "./lib/api.mjs";
 import {handleErrorDialog} from "./components/error.mjs";
 
-// get all the dynamic areas of the initial DOM
+// DOM container accessors for dynamic regions
 const getLogoutContainer = () => document.getElementById("logout-container");
 const getLoginContainer = () => document.getElementById("login-container");
 const getSignupContainer = () => document.getElementById("signup-container");
